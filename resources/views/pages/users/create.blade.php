@@ -20,27 +20,71 @@
 
             <div class="section-body">
                 <div class="card">
-                    <form>
+                    <form action="{{ route('user.store') }}" method="POST">
+                        @csrf
                         <div class="card-header">
                             <h4>New User</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" name='name'>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name">
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email">
+                                @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control @error ('password') is-invalid @enderror"
+                                name="password">
+                                @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
                                 <input type="text" class="form-control" name="phone">
                             </div>
+
+
+                            <div class="form-group">
+                                <label class="form-label">Roles</label>
+                                <div class="selectgroup w-100">
+                                    <label class="selectgroup-item">
+                                        <input type="radio"
+                                            name="roles"
+                                            value="admin"
+                                            class="selectgroup-input"
+                                            checked="">
+                                        <span class="selectgroup-button">Admin</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio"
+                                            name="roles"
+                                            value="dosen"
+                                            class="selectgroup-input">
+                                        <span class="selectgroup-button">Dosen</span>
+                                    </label>
+                                    <label class="selectgroup-item">
+                                        <input type="radio"
+                                            name="roles"
+                                            value="mahasiswa"
+                                            class="selectgroup-input">
+                                        <span class="selectgroup-button">Mahasiswa</span>
+                                    </label>
+                                    
+                                </div>
+                            </div>
+
                             <div class="form-group mb-0">
                                 <label>Address</label>
                                 <textarea class="form-control" data-height="150" name="address"></textarea>
