@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(200)->create(); //generate otomatis
+        User::factory(10)->create(); //generate otomatis
 
         User::create([ //yang ini kita buat manual
             'name'=>'andi',
