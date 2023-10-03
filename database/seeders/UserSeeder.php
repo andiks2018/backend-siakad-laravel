@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email'=>'andi@andi.com',
             'email_verified_at' =>now(),
             'password'=>Hash::make('12345678'),
-            'roles'=>'mahasiswa',
+            'roles'=>'admin',
         ]);
 
     }

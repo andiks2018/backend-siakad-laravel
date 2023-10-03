@@ -76,7 +76,10 @@
                                                 {{$user->created_at}}
                                             </td>
                                             <td>
-                                                Edit
+                                                <a href="{{route('user.edit', $user->id)}}"
+                                                    class="btn btn-sm btn-info btn-icon">
+                                                        <i class="fas fa-edit">Edit</i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
