@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,10 @@ class UserController extends Controller
         return redirect(route('user.index'))->with('Success', 'New user successfully');
     }
 
+    public function edit(User $user){
+        return view('pages.users.edit')->with('user', $user);
+    }
+
     /**
      * Display the specified resource.
      */
@@ -58,9 +63,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $validate = $request->validated();
+        $user->update($validate);
+        return redirect()->route('user.index')->with('success', "Edit User Successfully");
     }
 
     /**
