@@ -22,9 +22,11 @@ class UserController extends Controller
             return $query->where('name', 'like', '%'.$name.'%');
         })
         ->select('id', 'name', 'email', 'phone', DB::raw('DATE_FORMAT(created_at, "%d %M %Y") as created_at'))
+        ->orderBy('id', 'desc')
         ->paginate(10);
         return view('pages.users.index', compact('users'));
     }
+
     public function create (){
         return view('pages.users.create');
     }
@@ -73,8 +75,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'Delete User Successfully');
     }
 }
